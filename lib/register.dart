@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-class Register extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter SignUp',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage(),
-    );
-  }
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class _RegisterPageState extends State<RegisterPage> {
   final controllerUsername = TextEditingController();
   final controllerPassword = TextEditingController();
   final controllerEmail = TextEditingController();
@@ -39,7 +25,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Center(
                   child: const Text('Welcome',
-                      style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(
                   height: 16,
@@ -145,7 +132,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void doUserRegistration() async {
-		final username = controllerUsername.text.trim();
+    final username = controllerUsername.text.trim();
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
 

@@ -15,7 +15,11 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, debug: true);
   runApp(MaterialApp(
-    title: 'Navigation Basics',
+    title: 'Flutter SignUp',
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+    ),
     home: MyApp(),
   ));
 }
@@ -38,7 +42,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Register()),
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
                 },
               ),

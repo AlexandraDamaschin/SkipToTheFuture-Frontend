@@ -6,7 +6,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("Login"),
       ),
       body: Center(
         child: ElevatedButton(
