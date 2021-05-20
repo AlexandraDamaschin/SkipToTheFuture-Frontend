@@ -1,100 +1,164 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'dart:ui';
-import 'constants.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final keyApplicationId = 'xxxxxxxxx';
+  final keyClientKey = 'xxxxxxxxxx';
+  final keyParseServerUrl = 'https://parseapi.back4app.com';
+
+  await Parse().initialize(keyApplicationId, keyParseServerUrl,
+      clientKey: keyClientKey, debug: true);
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-    @override
+  @override
   Widget build(BuildContext context) {
-    final HttpLink httpLink = HttpLink(
-      uri: kParseApiUrl,
-      headers: {
-        'X-Parse-Application-Id': kParseApplicationId,
-        'X-Parse-Client-Key': kParseClientKey
-      },
-    );
-
-    ValueNotifier<GraphQLClient> client = ValueNotifier(
-      GraphQLClient(
-        cache: OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
-        link: httpLink,
-      ),
-    );
-
     return MaterialApp(
-      home: GraphQLProvider(
-        child: MyHomePage(),
-        client: client,
+      title: 'Flutter SignUp',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  String name;
-  String saveFormat;
-  String objectId;
-
-  String query = '''
-    query {
-      flutterGraphQL_ProgrammingLanguage(id:"HM6YKfylDS") {
-        id
-        name
-        stronglyTyped
-      }
-    }
-  ''';
+class _HomePageState extends State<HomePage> {
+  final controllerUsername = TextEditingController();
+  final controllerPassword = TextEditingController();
+  final controllerEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Parsing data using GraphQL',
-          ),
+          title: const Text('Flutter SignUp'),
         ),
-        body: Query(
-          options: QueryOptions(
-            documentNode: gql(query),
+        body: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Center(
+                  child: const Text('Welcome',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Center(
+                  child: const Text('User registration',
+                      style: TextStyle(fontSize: 16)),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                TextField(
+                  controller: controllerUsername,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'Username'),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'E-mail'),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPassword,
+                  obscureText: true,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'Password'),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  height: 50,
+                  child: TextButton(
+                    child: const Text('Sign Up'),
+                    onPressed: () => doUserRegistration(),
+                  ),
+                )
+              ],
+            ),
           ),
-          builder: (
-            QueryResult result, {
-            Refetch refetch,
-            FetchMore fetchMore,
-          }) {
-            print(result.exception);
-            if (result.data == null) {
-              return Center(
-                  child: Text(
-                "Loading...",
-                style: TextStyle(fontSize: 20.0),
-              ));
-            } else {
-              return ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(result.data["flutterGraphQL_ProgrammingLanguage"]['name']),
-                    trailing: Text(result.data["flutterGraphQL_ProgrammingLanguage"]['stronglyTyped']
-                        ? "Strongly Typed"
-                        : "Weekly Typed"),
-                  );
-                },
-                itemCount: 1,
-              );
-            }
-          },
-        ),
-      ),
+        ));
+  }
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("User was successfully created!"),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void doUserRegistration() async {
+		//Sigup code here
   }
 }
