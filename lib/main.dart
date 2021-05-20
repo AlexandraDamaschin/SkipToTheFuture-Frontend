@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'dart:ui';
-
-import 'constanta.dart';
+import 'constants.dart';
 
 void main() {
   runApp(MyApp());
