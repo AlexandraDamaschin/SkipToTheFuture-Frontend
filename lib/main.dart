@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Login()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
               ),
