@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+import 'constants.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final keyApplicationId = 'xxxxxxxxx';
-  final keyClientKey = 'xxxxxxxxxx';
-  final keyParseServerUrl = 'https://parseapi.back4app.com';
+  final keyApplicationId = kParseApplicationId;
+  final keyClientKey = kParseClientKey;
+  final keyParseServerUrl = kParseApiUrl;
 
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, debug: true);
@@ -159,6 +161,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   void doUserRegistration() async {
-		//Sigup code here
+		final username = controllerUsername.text.trim();
+    final email = controllerEmail.text.trim();
+    final password = controllerPassword.text.trim();
+
+    final user = ParseUser.createUser(username, password, email);
+
+    var response = await user.signUp();
+
+    if (response.success) {
+      showSuccess();
+    } else {
+      showError(response.error.message);
+    }
   }
 }
