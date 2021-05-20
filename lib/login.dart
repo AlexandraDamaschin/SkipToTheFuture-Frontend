@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+import 'home.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -144,6 +146,8 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         isLoggedIn = true;
       });
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     } else {
       showError(response.error.message);
     }
