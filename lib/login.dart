@@ -149,5 +149,16 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void doUserLogout() async {}
+  void doUserLogout() async {
+    final user = await ParseUser.currentUser();
+    var response = await user.logout();
+    if (response.success) {
+      showSuccess("User was successfully logout!");
+      setState(() {
+        isLoggedIn = false;
+      });
+    } else {
+      showError(response.error.message);
+    }
+  }
 }
