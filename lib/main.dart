@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:skip_to_the_future_app/home.dart';
 import 'package:skip_to_the_future_app/login.dart';
 import 'package:skip_to_the_future_app/register.dart';
 
@@ -25,43 +26,57 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
+  Future<bool> hasUserLogged() async {
+    ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
+    if (currentUser == null) {
+      return false;
+    }
+    //Checks whether the user's session token is valid
+    final ParseResponse parseResponse =
+        await ParseUser.getCurrentUserFromServer(
+            currentUser.get<String>('sessionToken'));
+
+    if (!parseResponse.success) {
+      //Invalid session. Logout
+      await currentUser.logout();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome'),
+    return MaterialApp(
+      title: 'Flutter - Parse Server',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ElevatedButton(
-                child: Text('Register'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                child: Text('Login'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: FutureBuilder<bool>(
+          future: hasUserLogged(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return Scaffold(
+                  body: Center(
+                    child: Container(
+                        width: 100,
+                        height: 100,
+                        child: CircularProgressIndicator()),
+                  ),
+                );
+                break;
+              default:
+                if (snapshot.hasData && snapshot.data) {
+                  return HomePage();
+                } else {
+                  return LoginPage();
+                }
+            }
+          }),
     );
   }
 }
