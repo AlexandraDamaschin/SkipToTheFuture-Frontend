@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-
-import 'home.dart';
+import 'package:skip_to_the_future_app/register.dart';
+import 'package:skip_to_the_future_app/reset_password.dart';
+import 'package:skip_to_the_future_app/user.dart';
+import 'message.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Login/Logout'),
+          title: const Text('Flutter - Parse Server'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -30,13 +32,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Flutter on Back4App',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Center(
-                  child: const Text('User Login/Logout',
-                      style: TextStyle(fontSize: 16)),
                 ),
                 SizedBox(
                   height: 16,
@@ -72,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Container(
                   height: 50,
-                  child: TextButton(
+                  child: ElevatedButton(
                     child: const Text('Login'),
                     onPressed: isLoggedIn ? null : () => doUserLogin(),
                   ),
@@ -82,55 +77,25 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Container(
                   height: 50,
-                  child: TextButton(
-                    child: const Text('Logout'),
-                    onPressed: !isLoggedIn ? null : () => doUserLogout(),
+                  child: ElevatedButton(
+                    child: const Text('Sign Up'),
+                    onPressed: () => navigateToSignUp(),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                    child: const Text('Reset Password'),
+                    onPressed: () => navigateToResetPassword(),
                   ),
                 )
               ],
             ),
           ),
         ));
-  }
-
-  void showSuccess(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Success!"),
-          content: Text(message),
-          actions: <Widget>[
-            new TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void showError(String errorMessage) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Error!"),
-          content: Text(errorMessage),
-          actions: <Widget>[
-            new TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   void doUserLogin() async {
@@ -142,27 +107,31 @@ class _LoginPageState extends State<LoginPage> {
     var response = await user.login();
 
     if (response.success) {
-      showSuccess("User was successfully login!");
-      setState(() {
-        isLoggedIn = true;
-      });
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      navigateToUser();
     } else {
-      showError(response.error.message);
+      Message.showError(context: context, message: response.error.message);
     }
   }
 
-  void doUserLogout() async {
-    final user = await ParseUser.currentUser();
-    var response = await user.logout();
-    if (response.success) {
-      showSuccess("User was successfully logout!");
-      setState(() {
-        isLoggedIn = false;
-      });
-    } else {
-      showError(response.error.message);
-    }
+  void navigateToUser() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => UserPage()),
+      (Route<dynamic> route) => false,
+    );
+  }
+
+  void navigateToSignUp() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterPage()),
+    );
+  }
+
+  void navigateToResetPassword() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ResetPasswordPage()),
+    );
   }
 }

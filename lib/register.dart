@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:skip_to_the_future_app/user.dart';
+import 'message.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -15,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter SignUp'),
+          title: const Text('Flutter Sign Up'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -24,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
-                  child: const Text('Welcome',
+                  child: const Text('Flutter on Back4App',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
@@ -80,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Container(
                   height: 50,
-                  child: TextButton(
+                  child: ElevatedButton(
                     child: const Text('Sign Up'),
                     onPressed: () => doUserRegistration(),
                   ),
@@ -89,46 +91,6 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
         ));
-  }
-
-  void showSuccess() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Success!"),
-          content: const Text("User was successfully created!"),
-          actions: <Widget>[
-            new TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void showError(String errorMessage) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Error!"),
-          content: Text(errorMessage),
-          actions: <Widget>[
-            new TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   void doUserRegistration() async {
@@ -141,9 +103,18 @@ class _RegisterPageState extends State<RegisterPage> {
     var response = await user.signUp();
 
     if (response.success) {
-      showSuccess();
+      Message.showSuccess(
+          context: context,
+          message: 'User was successfully created!',
+          onPressed: () async {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => UserPage()),
+              (Route<dynamic> route) => false,
+            );
+          });
     } else {
-      showError(response.error.message);
+      Message.showError(context: context, message: response.error.message);
     }
   }
 }
