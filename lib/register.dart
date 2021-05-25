@@ -103,15 +103,13 @@ class _RegisterPageState extends State<RegisterPage> {
     var response = await user.signUp();
 
     if (response.success) {
+      await user.logout();
+
       Message.showSuccess(
           context: context,
           message: 'User was successfully created!',
           onPressed: () async {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => UserPage()),
-              (Route<dynamic> route) => false,
-            );
+            Navigator.pop(context);
           });
     } else {
       Message.showError(context: context, message: response.error.message);
