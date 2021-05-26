@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'home.dart';
 import 'login.dart';
 import 'message.dart';
 
@@ -50,26 +51,7 @@ class UserPage extends StatelessWidget {
                   );
                   break;
                 default:
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(child: Text('Hello, ${snapshot.data.username}')),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                          height: 50,
-                          child: ElevatedButton(
-                            child: const Text('Logout'),
-                            onPressed: () => doUserLogout(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
+                  return HomePage();
               }
             }));
   }
