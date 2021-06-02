@@ -1,10 +1,18 @@
-class Lesson {
+class Project {
   String title;
-  String level;
+  String description;
   double indicatorValue;
-  int price;
   String content;
+  String hostedBy;
+  String location;
+  String url;
 
-  Lesson(
-      {this.title, this.level, this.indicatorValue, this.price, this.content});
+  Project(
+      {this.title,
+      this.description,
+      this.indicatorValue,
+      this.content,
+      this.hostedBy,
+      this.location,
+      this.url});
 }

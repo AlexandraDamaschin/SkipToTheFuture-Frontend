@@ -22,7 +22,7 @@ class _ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    ListTile makeListTile(Lesson lesson) => ListTile(
+    ListTile makeListTile(Project project) => ListTile(
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           leading: Container(
@@ -33,7 +33,7 @@ class _ListPageState extends State<ListPage> {
             child: Icon(Icons.autorenew, color: Colors.white),
           ),
           title: Text(
-            lesson.title,
+            project.title,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
@@ -46,14 +46,14 @@ class _ListPageState extends State<ListPage> {
                     // tag: 'hero',
                     child: LinearProgressIndicator(
                         backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                        value: lesson.indicatorValue,
+                        value: project.indicatorValue,
                         valueColor: AlwaysStoppedAnimation(Colors.green)),
                   )),
               Expanded(
                 flex: 4,
                 child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
-                    child: Text(lesson.level,
+                    child: Text(project.description,
                         style: TextStyle(color: Colors.white))),
               )
             ],
@@ -64,11 +64,11 @@ class _ListPageState extends State<ListPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DetailPage(lesson: lesson)));
+                    builder: (context) => DetailPage(project: project)));
           },
         );
 
-    Card makeCard(Lesson lesson) => Card(
+    Card makeCard(Project lesson) => Card(
           elevation: 8.0,
           margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           child: Container(
@@ -139,54 +139,59 @@ class _ListPageState extends State<ListPage> {
 
 List getLessons() {
   return [
-    Lesson(
-        title: "Introduction to Driving",
-        level: "Beginner",
+    Project(
+        title: "WE HELP ȘCOALA DIN SĂCEL!",
+        description: "Beginner",
         indicatorValue: 0.33,
-        price: 20,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Observation at Junctions",
-        level: "Beginner",
-        indicatorValue: 0.33,
-        price: 50,
+            "În urma participării la Maratonul Internațional Sibiu 2020 am reușit, cu ajutorul a 67 de alergători și 228 de susținători, să stângem suma de 17511 lei.Am ales să inițiem un proiect pentru Școala din Săcel pentru că fără continuitate un proiect privind educația nu poate evolua. Astfel dezvoltăm demersurile, începute de către noi în 2016, de a susține educația în zona rurală din județul Sibiu, prin modernizarea unor săli de activități în școlile din Țichindeal și Mag.",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/we-help-scoala-din-sacel/"),
+    Project(
+        title: "NE PREGĂTIM PENTRU VIAȚĂ",
+        description: "Beginner",
+        indicatorValue: 0.83,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Reverse parallel Parking",
-        level: "Intermidiate",
-        indicatorValue: 0.66,
-        price: 30,
+            "Proiectul ‘’Ne pregătim pentru viață‘‘ și-a propus ca în decursul a patru zile să le ofere copiilor din cadrul programului nostru educativ ‘‘Ajută copiii din familii defavorizate să meargă la școală ‘‘ oportunități de socializare și suportul material de care ei au nevoie în vederea depășirii problemelor dificile cu care se confruntă și dezvoltării abilităților necesare pentru a-și asigura un trai decent în viitor.",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/ne-pregatim-pentru-viata/"),
+    Project(
+        title: "DORINȚA DE CRĂCIUN",
+        description: "Beginner",
+        indicatorValue: 0.13,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Reversing around the corner",
-        level: "Intermidiate",
-        indicatorValue: 0.66,
-        price: 30,
+            "Campania “Dorința de Crăciun” a luat naștere din dorința oamenilor de a ajuta chiar și în situația actuală. Deoarece ne doream să organizăm un proiect care să ajute copiii, dar în același timp să ne asigurăm că întreaga noastră echipă este în siguranță am luat decizia de a organiza o strângere de fonduri online. Prin acest proiect am reușit cu ajutorul vostru să pregătim 190 de copii pentru iarnă. ",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/dorinta-de-craciun/"),
+    Project(
+        title: "WE HELP ȘCOALA DIN MAG!",
+        description: "Beginner",
+        indicatorValue: 1,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Incorrect Use of Signal",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
+            "După mai bine de 3 săptămani de muncă am reușit să deschidem oficial sala noastră de cercetare la Școala din Mag! Datorită vouă celor care ați ales să alergați/susțineți proiectul nostru înscris la Maratonul International Sibiu am renovat două săli din școală. Cei mici s-au bucurat foarte mult când au descoperit că au o sală de documentare științifică și pedagogică. Aici se pot bucura citind o carte, realizând ateliere de creație sau vizionând emisiuni educative.",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/we-help-scoala-din-mag/"),
+    Project(
+        title: "WE HELP BY CODING",
+        description: "Beginner",
+        indicatorValue: 0.73,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Engine Challenges",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
+            "We Help By Coding este un proiect pentru care aplicăm anual din 2017 până în prezent.Dorim să le împărtășim celor mici din cunoștințele noastre despre tehnologia informației, calculatoare și diferite modalități de a învăța programare sub forma unei provocări amuzante. Copiii au nevoie de o oportunitate să experimenteze și să exploreze lumea tehnologiei pentru a se pregăti de viața într-o societate modernă și pentru a-și dezvolta abilitățile de rezolvare a problemelor.",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/we-help-by-coding/"),
+    Project(
+        title: "SHOEBOX",
+        description: "Beginner",
+        indicatorValue: 0.5,
         content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed."),
-    Lesson(
-        title: "Self Driving Car",
-        level: "Advanced",
-        indicatorValue: 1.0,
-        price: 50,
-        content:
-            "Start by taking a couple of minutes to read the info in this section. Launch your app and click on the Settings menu.  While on the settings page, click the Save button.  You should see a circular progress indicator display in the middle of the page and the user interface elements cannot be clicked due to the modal barrier that is constructed.  ")
+            "„ShoeBox” este o inițiativă de ajutorare a copiilor din familii cu posibilități materiale reduse, campanie începută în anul 2007 de o familie din Cluj, continuată la nivel de oraș, apoi extinsă în toată țara. Conceptul presupune ca donatorul să ofere unul sau mai multe cadouri cu un volum rezonabil, care să încapă într-o cutie de pantofi, de aici și denumirea de ,,ShoeBox”. ",
+        hostedBy: "Asociatia We Help!",
+        location: "Sibiu",
+        url: "https://we-help.ro/shoebox/")
   ];
 }
