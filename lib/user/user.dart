@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'home.dart';
-import 'login.dart';
-import 'message.dart';
+import '../home.dart';
+import '../login/login.dart';
+import '../common/message.dart';
 
 class UserPage extends StatelessWidget {
   ParseUser currentUser;

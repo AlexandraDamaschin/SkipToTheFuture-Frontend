@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/home.dart';
-import 'package:skip_to_the_future_app/login.dart';
+import 'package:skip_to_the_future_app/login/login.dart';
 
-import 'constants.dart';
+import 'common/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,7 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, debug: true);
   runApp(MaterialApp(
-    title: 'Flutter SignUp',
+    title: 'SignUp',
     theme: ThemeData(
       primarySwatch: Colors.blue,
       visualDensity: VisualDensity.adaptivePlatformDensity,
