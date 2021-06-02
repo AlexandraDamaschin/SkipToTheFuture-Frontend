@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:skip_to_the_future_app/projects/projects.dart';
 import 'package:skip_to_the_future_app/user/user_info.dart';
 
-import 'login/login.dart';
 import 'common/message.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,6 +47,21 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                      height: 50,
+                      child: ElevatedButton(
+                          child: const Text('Find more about our projects'),
+                          onPressed: () => {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ListPage()),
+                                  (Route<dynamic> route) => false,
+                                )
+                              })),
                   SizedBox(
                     height: 16,
                   ),
