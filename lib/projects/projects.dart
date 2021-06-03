@@ -13,11 +13,11 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-  List lessons;
+  List projects;
 
   @override
   void initState() {
-    lessons = getLessons();
+    projects = getProjects();
     super.initState();
   }
 
@@ -79,9 +79,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: lessons.length,
+        itemCount: projects.length,
         itemBuilder: (BuildContext context, int index) {
-          return makeCard(lessons[index]);
+          return makeCard(projects[index]);
         },
       ),
     );
@@ -139,7 +139,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   }
 }
 
-List getLessons() {
+List getProjects() {
   return [
     Project(
         title: "WE HELP ȘCOALA DIN SĂCEL!",
