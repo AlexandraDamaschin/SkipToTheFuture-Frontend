@@ -39,7 +39,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Parse Query Users"),
+          title: Text("User info"),
           backgroundColor: Colors.blueAccent,
           centerTitle: true,
         ),
