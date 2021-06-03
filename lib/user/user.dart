@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import '../home.dart';
-import '../login/login.dart';
-import '../common/message.dart';
+import 'package:skip_to_the_future_app/projects/projects.dart';
 
 class UserPage extends StatelessWidget {
   ParseUser currentUser;
@@ -15,28 +13,7 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void doUserLogout() async {
-      var response = await currentUser.logout();
-      if (response.success) {
-        Message.showSuccess(
-            context: context,
-            message: 'User was successfully logout!',
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-                (Route<dynamic> route) => false,
-              );
-            });
-      } else {
-        Message.showError(context: context, message: response.error.message);
-      }
-    }
-
     return Scaffold(
-        appBar: AppBar(
-          title: Text('User logged in - Current User'),
-        ),
         body: FutureBuilder<ParseUser>(
             future: getUser(),
             builder: (context, snapshot) {
@@ -51,7 +28,7 @@ class UserPage extends StatelessWidget {
                   );
                   break;
                 default:
-                  return HomePage();
+                  return ProjectsPage();
               }
             }));
   }

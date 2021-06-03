@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:skip_to_the_future_app/home.dart';
 import 'package:skip_to_the_future_app/login/login.dart';
 
 import 'common/constants.dart';
+import 'projects/projects.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,16 +16,11 @@ void main() async {
       clientKey: keyClientKey, debug: true);
   runApp(MaterialApp(
     title: 'SignUp',
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-    ),
     home: MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-
   Future<bool> hasUserLogged() async {
     ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
     if (currentUser == null) {
@@ -49,10 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Volunteer with us',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+
       home: FutureBuilder<bool>(
           future: hasUserLogged(),
           builder: (context, snapshot) {
@@ -70,7 +62,7 @@ class MyApp extends StatelessWidget {
                 break;
               default:
                 if (snapshot.hasData && snapshot.data) {
-                  return HomePage();
+                  return ProjectsPage();
                 } else {
                   return LoginPage();
                 }

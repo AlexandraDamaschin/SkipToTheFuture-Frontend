@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:skip_to_the_future_app/user/user.dart';
 import '../common/message.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -17,7 +16,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Sign Up'),
+          backgroundColor: Colors.white24,
+          title: const Text('Sign Up'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
-                  child: const Text('Flutter on Back4App',
+                  child: const Text('Volunteer with us',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
@@ -83,6 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white24,
+                    ),
                     child: const Text('Sign Up'),
                     onPressed: () => doUserRegistration(),
                   ),

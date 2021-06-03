@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white24,
           title: const Text('Volunteer with us'),
         ),
         body: Center(
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
-                  child: const Text('Flutter on Back4App',
+                  child: const Text('Volunteer with us',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
@@ -68,6 +69,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white24,
+                    ),
                     child: const Text('Login'),
                     onPressed: isLoggedIn ? null : () => doUserLogin(),
                   ),
@@ -78,6 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white24,
+                    ),
                     child: const Text('Sign Up'),
                     onPressed: () => navigateToSignUp(),
                   ),
@@ -88,6 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white24,
+                    ),
                     child: const Text('Reset Password'),
                     onPressed: () => navigateToResetPassword(),
                   ),
