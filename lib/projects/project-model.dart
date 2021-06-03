@@ -6,6 +6,7 @@ class Project {
   String hostedBy;
   String location;
   String url;
+  String imageUrl;
 
   Project(
       {this.title,
@@ -14,5 +15,6 @@ class Project {
       this.content,
       this.hostedBy,
       this.location,
-      this.url});
+      this.url,
+      this.imageUrl});
 }
