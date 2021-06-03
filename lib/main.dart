@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:skip_to_the_future_app/home.dart';
 import 'package:skip_to_the_future_app/login/login.dart';
 
 import 'common/constants.dart';
+import 'projects/projects.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   Future<bool> hasUserLogged() async {
     ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
     if (currentUser == null) {
@@ -70,7 +69,7 @@ class MyApp extends StatelessWidget {
                 break;
               default:
                 if (snapshot.hasData && snapshot.data) {
-                  return HomePage();
+                  return ProjectsPage();
                 } else {
                   return LoginPage();
                 }

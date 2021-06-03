@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:skip_to_the_future_app/projects/project-details.dart';
 import 'package:skip_to_the_future_app/projects/project-model.dart';
+import 'package:skip_to_the_future_app/user/user_info.dart';
 
-class ListPage extends StatefulWidget {
-  ListPage({Key key, this.title}) : super(key: key);
+class ProjectsPage extends StatefulWidget {
+  ProjectsPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _ListPageState createState() => _ListPageState();
+  _ProjectsPageState createState() => _ProjectsPageState();
 }
 
-class _ListPageState extends State<ListPage> {
+class _ProjectsPageState extends State<ProjectsPage> {
   List lessons;
 
   @override
@@ -36,14 +37,11 @@ class _ListPageState extends State<ListPage> {
             project.title,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
           subtitle: Row(
             children: <Widget>[
               Expanded(
                   flex: 1,
                   child: Container(
-                    // tag: 'hero',
                     child: LinearProgressIndicator(
                         backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
                         value: project.indicatorValue,
@@ -78,7 +76,6 @@ class _ListPageState extends State<ListPage> {
         );
 
     final makeBody = Container(
-      // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
@@ -123,7 +120,13 @@ class _ListPageState extends State<ListPage> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.list),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => UserInfoPage()),
+              (Route<dynamic> route) => false,
+            );
+          },
         )
       ],
     );
