@@ -121,10 +121,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
         IconButton(
           icon: Icon(Icons.list),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => UserInfoPage()),
-              (Route<dynamic> route) => false,
             );
           },
         )

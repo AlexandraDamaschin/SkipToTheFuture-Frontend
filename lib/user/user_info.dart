@@ -39,6 +39,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Text("User info"),
           backgroundColor: Colors.blueAccent,
           centerTitle: true,
