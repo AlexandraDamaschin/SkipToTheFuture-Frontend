@@ -16,7 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Sign Up'),
+          title: const Text('Sign Up'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -25,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
-                  child: const Text('Flutter on Back4App',
+                  child: const Text('Volunteer with us',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),

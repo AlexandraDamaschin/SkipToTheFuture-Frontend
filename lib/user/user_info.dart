@@ -20,6 +20,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   @override
   Widget build(BuildContext context) {
     void doUserLogout() async {
+      ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
       var response = await currentUser.logout();
       if (response.success) {
         Message.showSuccess(
