@@ -15,36 +15,23 @@ class DetailPage extends StatelessWidget {
       ),
     );
 
-    final coursePrice = Container(
-      padding: const EdgeInsets.all(7.0),
-      decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(5.0)),
-      child: new Text(
-        "\$" + project.hostedBy.toString(),
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-
-    final topContentText = Column(
+    final topContentText = SingleChildScrollView(
+        child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 120.0),
-        Icon(
-          Icons.directions_car,
-          color: Colors.white,
-          size: 40.0,
-        ),
-        Container(
-          width: 90.0,
-          child: new Divider(color: Colors.green),
-        ),
-        SizedBox(height: 10.0),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Image.network(
+            project.imageUrl,
+            width: 300,
+            fit: BoxFit.cover,
+          ),
+        ]),
+        SizedBox(height: 5.0),
         Text(
           project.title,
-          style: TextStyle(color: Colors.white, fontSize: 45.0),
+          style: TextStyle(color: Colors.white, fontSize: 25.0),
         ),
-        SizedBox(height: 30.0),
+        SizedBox(height: 10.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -57,20 +44,25 @@ class DetailPage extends StatelessWidget {
                       project.description,
                       style: TextStyle(color: Colors.white),
                     ))),
-            Expanded(flex: 1, child: coursePrice)
           ],
         ),
+        SizedBox(height: 5.0),
+        Text(
+          project.hostedBy.toString(),
+          style: TextStyle(color: Colors.white),
+        ),
       ],
-    );
+    ));
 
     final topContent = Stack(
       children: <Widget>[
         Container(
             padding: EdgeInsets.only(left: 10.0),
             height: MediaQuery.of(context).size.height * 0.5,
+            width: 20,
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new AssetImage("drive-steering-wheel.jpg"),
+                image: new AssetImage(project.imageUrl),
                 fit: BoxFit.cover,
               ),
             )),
@@ -98,7 +90,7 @@ class DetailPage extends StatelessWidget {
 
     final bottomContentText = Text(
       project.content,
-      style: TextStyle(fontSize: 18.0),
+      style: TextStyle(fontSize: 14.0),
     );
     final readButton = Container(
         padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -107,7 +99,7 @@ class DetailPage extends StatelessWidget {
           onPressed: () => {},
           color: Color.fromRGBO(58, 66, 86, 1.0),
           child:
-              Text("TAKE THIS LESSON", style: TextStyle(color: Colors.white)),
+              Text("Participa la acest proiect", style: TextStyle(color: Colors.white)),
         ));
     final bottomContent = Container(
       width: MediaQuery.of(context).size.width,

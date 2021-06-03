@@ -16,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white24,
           title: const Text('Sign Up'),
         ),
         body: Center(
@@ -82,6 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white24,
+                    ),
                     child: const Text('Sign Up'),
                     onPressed: () => doUserRegistration(),
                   ),

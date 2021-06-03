@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/projects/projects.dart';
-import '../login/login.dart';
-import '../common/message.dart';
 
 class UserPage extends StatelessWidget {
   ParseUser currentUser;
@@ -16,9 +14,6 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('User logged in - Current User'),
-        ),
         body: FutureBuilder<ParseUser>(
             future: getUser(),
             builder: (context, snapshot) {
