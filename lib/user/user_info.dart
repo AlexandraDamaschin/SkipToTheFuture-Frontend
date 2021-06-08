@@ -74,7 +74,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     }
 
                     final user = snapshot.data[3] as ParseUser;
-                    final userVerified = user.emailVerified ?? false;
 
                     return SafeArea(
                         child: Column(
