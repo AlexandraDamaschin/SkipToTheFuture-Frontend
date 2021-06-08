@@ -75,7 +75,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       );
                     }
 
-                    final user = snapshot.data[3] as ParseUser;
+                    final user = snapshot.data[0] as ParseUser;
 
                     return SafeArea(
                         child: Column(
