@@ -67,12 +67,12 @@ class _ProjectsPageState extends State<ProjectsPage> {
           },
         );
 
-    Card makeCard(Project lesson) => Card(
+    Card makeCard(Project project) => Card(
           elevation: 8.0,
           margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           child: Container(
             decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-            child: makeListTile(lesson),
+            child: makeListTile(project),
           ),
         );
 
