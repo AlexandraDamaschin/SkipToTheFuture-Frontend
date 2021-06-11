@@ -8,16 +8,10 @@ import 'projects/projects.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final keyApplicationId = kParseApplicationId;
-  final keyClientKey = kParseClientKey;
-  final keyParseServerUrl = kParseApiUrl;
+  await Parse().initialize(kParseApplicationId, kParseApiUrl,
+      clientKey: kParseClientKey);
 
-  await Parse().initialize(keyApplicationId, keyParseServerUrl,
-      clientKey: keyClientKey, debug: true);
-  runApp(MaterialApp(
-    title: 'SignUp',
-    home: MyApp(),
-  ));
+  runApp(MaterialApp(title: 'SignUp', home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,7 +38,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Volunteer with us',
-
       home: FutureBuilder<bool>(
           future: hasUserLogged(),
           builder: (context, snapshot) {
