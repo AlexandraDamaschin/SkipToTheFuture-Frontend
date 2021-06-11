@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/login/login.dart';
-
 import 'common/constants.dart';
 import 'projects/projects.dart';
 

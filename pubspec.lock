@@ -269,7 +269,7 @@ packages:
     source: hosted
     version: "0.4.3+4"
   parse_server_sdk:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: parse_server_sdk
       url: "https://pub.dartlang.org"
