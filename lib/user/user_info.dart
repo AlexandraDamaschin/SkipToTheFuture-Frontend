@@ -83,8 +83,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image:
-                                      NetworkImage("https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
+                                  image: NetworkImage(
+                                      "https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
                                   fit: BoxFit.cover)),
                           child: Container(
                             width: double.infinity,
@@ -106,7 +106,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20.0,
-                                color: Colors.blueGrey[50],
+                                color: Colors.white,
                                 fontWeight: FontWeight.w400)),
                         SizedBox(
                           height: 10,
@@ -115,13 +115,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           "Sibiu",
                           style: TextStyle(
                               fontSize: 18.0,
-                              color: Colors.blueGrey[200],
+                              color: Colors.white,
                               fontWeight: FontWeight.w300),
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Card(
+                            color: Colors.white70,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 20.0, vertical: 8.0),
                             elevation: 2.0,
@@ -130,7 +131,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                     vertical: 12, horizontal: 30),
                                 child: Text(
                                   "Skill Sets",
-                                  style: TextStyle(fontWeight: FontWeight.w300),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.blueAccent,
+                                  ),
                                 ))),
                         SizedBox(
                           height: 10,
@@ -139,10 +143,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           "Public Speaking || Digital Marketer",
                           style: TextStyle(
                               fontSize: 18.0,
-                              color: Colors.blueGrey[200],
+                              color: Colors.white,
                               fontWeight: FontWeight.w300),
                         ),
                         Card(
+                            color: Colors.white70,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 20.0, vertical: 8.0),
                             child: Padding(
