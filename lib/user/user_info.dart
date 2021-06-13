@@ -259,7 +259,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: doUserLogout,
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
