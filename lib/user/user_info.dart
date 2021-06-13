@@ -84,7 +84,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image:
-                                      NetworkImage("add you image URL here "),
+                                      NetworkImage("https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
                                   fit: BoxFit.cover)),
                           child: Container(
                             width: double.infinity,
@@ -93,7 +93,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                               alignment: Alignment(0.0, 2.5),
                               child: CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                    "Add you profile DP image URL here "),
+                                    "https://we-help.ro/wp-content/uploads/2020/01/80956143_2619084438140865_3308753349259558912_o-1-150x150.jpg"),
                                 radius: 60.0,
                               ),
                             ),
