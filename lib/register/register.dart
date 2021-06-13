@@ -31,16 +31,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 48,
-                  ),
+                  SizedBox(height: (constrains.maxWidth < 700) ? 16 : 48),
                   Center(
                     child: const Text('User registration',
                         style: TextStyle(fontSize: 16)),
                   ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 48,
-                  ),
+                  SizedBox(height: (constrains.maxWidth < 700) ? 16 : 48),
                   Container(
                     margin: (constrains.maxWidth < 700)
                         ? EdgeInsets.only(right: 20, left: 20)
@@ -56,9 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           labelText: 'Username'),
                     ),
                   ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 8 : 24,
-                  ),
+                  SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
                   Container(
                     margin: (constrains.maxWidth < 700)
                         ? EdgeInsets.only(right: 20, left: 20)
@@ -74,9 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           labelText: 'E-mail'),
                     ),
                   ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 8 : 24,
-                  ),
+                  SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
                   Container(
                     margin: (constrains.maxWidth < 700)
                         ? EdgeInsets.only(right: 20, left: 20)
@@ -93,9 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           labelText: 'Password'),
                     ),
                   ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 8 : 24,
-                  ),
+                  SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
                   Container(
                     height: 50,
                     margin: (constrains.maxWidth < 700)
