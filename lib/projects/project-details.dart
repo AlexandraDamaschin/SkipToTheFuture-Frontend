@@ -19,7 +19,8 @@ class DetailPage extends StatelessWidget {
     final Uri _emailLaunchUri = Uri(
         scheme: 'mailto',
         path: '${project.contact}',
-        queryParameters: {'subject': 'Example Subject & Symbols are allowed!'});
+        query:
+            'subject=Vreau sa particip in cadrul programului ${project.title}');
 
     void launchURL() async => await canLaunch(_emailLaunchUri.toString())
         ? await launch(_emailLaunchUri.toString())
