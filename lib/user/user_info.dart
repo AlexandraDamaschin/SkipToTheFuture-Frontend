@@ -51,240 +51,276 @@ class _UserInfoPageState extends State<UserInfoPage> {
           centerTitle: true,
         ),
         key: _scaffoldKey,
-        body: FutureBuilder<List<ParseObject>>(
-            future: doUserQuery(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return Center(
-                    child: Container(
-                        width: 100,
-                        height: 100,
-                        child: CircularProgressIndicator()),
-                  );
-                default:
-                  if (snapshot.hasError) {
+        body: LayoutBuilder(builder: (context, constrains) {
+          return FutureBuilder<List<ParseObject>>(
+              future: doUserQuery(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
                     return Center(
-                      child: Text("Error...: ${snapshot.error.toString()}"),
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          child: CircularProgressIndicator()),
                     );
-                  } else {
-                    if (snapshot.data.isEmpty) {
+                  default:
+                    if (snapshot.hasError) {
                       return Center(
-                        child: Text('None user found'),
+                        child: Text("Error...: ${snapshot.error.toString()}"),
                       );
-                    }
+                    } else {
+                      if (snapshot.data.isEmpty) {
+                        return Center(
+                          child: Text('No user found'),
+                        );
+                      }
 
-                    final user = snapshot.data[0] as ParseUser;
+                      final user = snapshot.data[0] as ParseUser;
 
-                    return SafeArea(
-                        child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
-                                  fit: BoxFit.cover)),
-                          child: Container(
-                            width: double.infinity,
-                            height: 200,
-                            child: Container(
-                              alignment: Alignment(0.0, 2.5),
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://we-help.ro/wp-content/uploads/2020/01/80956143_2619084438140865_3308753349259558912_o-1-150x150.jpg"),
-                                radius: 60.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 80,
-                        ),
-                        Text("${user.username}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400)),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Sibiu",
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Card(
-                            color: Colors.white70,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 8.0),
-                            elevation: 2.0,
-                            child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 30),
-                                child: Text(
-                                  "Skill Sets",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.blueAccent,
+                      return SingleChildScrollView(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            "https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
+                                        fit: (constrains.maxWidth < 700)
+                                            ? BoxFit.cover
+                                            : BoxFit.contain)),
+                                child: Container(
+                                  width: double.infinity,
+                                  height:
+                                      (constrains.maxWidth < 700) ? 200 : 400,
+                                  child: Container(
+                                    alignment: Alignment(0.0, 2.5),
+                                    child: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          "https://we-help.ro/wp-content/uploads/2020/01/80956143_2619084438140865_3308753349259558912_o-1-150x150.jpg"),
+                                      radius: (constrains.maxWidth < 700)
+                                          ? 60.0
+                                          : 100.0,
+                                    ),
                                   ),
-                                ))),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Public Speaking || Digital Marketer",
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300),
-                        ),
-                        Card(
-                            color: Colors.white70,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 8.0),
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                ),
+                              ),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 80 : 240),
+                              Text("${user.username}",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400)),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 10 : 30),
+                              Text(
+                                "Sibiu",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 10 : 30),
+                              Card(
+                                  color: Colors.white70,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: (constrains.maxWidth < 700)
+                                          ? 20
+                                          : 850,
+                                      vertical: 8.0),
+                                  elevation: 2.0,
+                                  child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 12, horizontal: 30),
+                                      child: Text(
+                                        "Skill Sets",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.blueAccent,
+                                        ),
+                                      ))),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 10 : 30),
+                              Text(
+                                "Public Speaking || Digital Marketer",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                              Card(
+                                  color: Colors.white70,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: (constrains.maxWidth < 700)
+                                          ? 20
+                                          : 850,
+                                      vertical: 8.0),
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Projects",
+                                                  style: TextStyle(
+                                                      color: Colors.blueAccent,
+                                                      fontSize: 22.0,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                SizedBox(
+                                                  height: 7,
+                                                ),
+                                                Text(
+                                                  "15",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 22.0,
+                                                      fontWeight:
+                                                          FontWeight.w300),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                              child: Column(
+                                            children: [
+                                              Text(
+                                                "Jobs",
+                                                style: TextStyle(
+                                                    color: Colors.blueAccent,
+                                                    fontSize: 22.0,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                              SizedBox(
+                                                height: 7,
+                                              ),
+                                              Text(
+                                                "1",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 22.0,
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              )
+                                            ],
+                                          ))
+                                        ],
+                                      ))),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 50 : 150),
+                              Container(
+                                margin: (constrains.maxWidth < 700)
+                                    ? EdgeInsets.only(right: 20, left: 20)
+                                    : EdgeInsets.only(right: 500, left: 500),
                                 child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton(
+                                          onPressed: () {},
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          80.0)),
+                                            ),
+                                          ),
+                                          child: Container(
+                                              constraints: BoxConstraints(
+                                                maxWidth: 150.0,
+                                                maxHeight: 40.0,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Contact me",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              ))),
+                                      ElevatedButton(
+                                          onPressed: () {},
+                                          style: ButtonStyle(
+                                              shape: MaterialStateProperty.all<
+                                                      RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(80.0),
+                                          ))),
+                                          child: Container(
+                                              constraints: BoxConstraints(
+                                                maxWidth: 150.0,
+                                                maxHeight: 40.0,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Portfolio",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.0,
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              )))
+                                    ]),
+                              ),
+                              SizedBox(
+                                  height:
+                                      (constrains.maxWidth < 700) ? 10 : 30),
+                              Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "Projects",
-                                            style: TextStyle(
-                                                color: Colors.blueAccent,
-                                                fontSize: 22.0,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Text(
-                                            "15",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 22.0,
-                                                fontWeight: FontWeight.w300),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                        child: Column(
-                                      children: [
-                                        Text(
-                                          "Jobs",
-                                          style: TextStyle(
-                                              color: Colors.blueAccent,
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        SizedBox(
-                                          height: 7,
-                                        ),
-                                        Text(
-                                          "1",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.w300),
-                                        )
-                                      ],
-                                    ))
-                                  ],
-                                ))),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
+                                    ElevatedButton(
+                                        onPressed: doUserLogout,
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                    RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(80.0)),
-                                    ),
-                                  ),
-                                  child: Container(
-                                      constraints: BoxConstraints(
-                                        maxWidth: 150.0,
-                                        maxHeight: 40.0,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Contact me",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w300),
-                                      ))),
-                              ElevatedButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ))),
-                                  child: Container(
-                                      constraints: BoxConstraints(
-                                        maxWidth: 150.0,
-                                        maxHeight: 40.0,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Portfolio",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w300),
-                                      )))
-                            ]),
-                        SizedBox(height: 10),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: doUserLogout,
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ))),
-                                  child: Container(
-                                      constraints: BoxConstraints(
-                                        maxWidth: 150.0,
-                                        maxHeight: 40.0,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Logout",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w300),
-                                      )))
-                            ]),
-                      ],
-                    ));
-                  }
-              }
-            }));
+                                              BorderRadius.circular(80.0),
+                                        ))),
+                                        child: Container(
+                                            constraints: BoxConstraints(
+                                              maxWidth: 150.0,
+                                              maxHeight: 40.0,
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Logout",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.w300),
+                                            )))
+                                  ]),
+                            ],
+                          ));
+                    }
+                }
+              });
+        }));
   }
 
   Future<List<ParseObject>> doUserQuery() async {
