@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skip_to_the_future_app/projects/project-model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   final Project project;
@@ -14,6 +15,16 @@ class DetailPage extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation(Colors.green)),
       ),
     );
+
+    final Uri _emailLaunchUri = Uri(
+        scheme: 'mailto',
+        path: '${project.contact}',
+        query:
+            'subject=Vreau sa particip in cadrul programului ${project.title}');
+
+    void launchURL() async => await canLaunch(_emailLaunchUri.toString())
+        ? await launch(_emailLaunchUri.toString())
+        : throw 'Nu se poate accesa email-ul: $_emailLaunchUri.toString()';
 
     final topContentText = SingleChildScrollView(
         child: Column(
@@ -96,10 +107,10 @@ class DetailPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 16.0),
         width: MediaQuery.of(context).size.width,
         child: RaisedButton(
-          onPressed: () => {},
+          onPressed: launchURL,
           color: Color.fromRGBO(58, 66, 86, 1.0),
-          child:
-              Text("Participa la acest proiect", style: TextStyle(color: Colors.white)),
+          child: Text("Participa la acest proiect",
+              style: TextStyle(color: Colors.white)),
         ));
     final bottomContent = Container(
       width: MediaQuery.of(context).size.width,
