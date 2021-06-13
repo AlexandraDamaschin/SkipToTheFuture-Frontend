@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:skip_to_the_future_app/projects/project-details.dart';
-import 'package:skip_to_the_future_app/projects/project-model.dart';
+import 'package:skip_to_the_future_app/projects/project_details.dart';
+import 'package:skip_to_the_future_app/projects/project_model.dart';
 import 'package:skip_to_the_future_app/user/user_info.dart';
 
 class ProjectsPage extends StatefulWidget {
