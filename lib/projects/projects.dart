@@ -96,9 +96,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return makeCard(Project(
                         title: snapshot.data[index].get<String>('title'),
-                        content: snapshot.data[index].get<String>('content'),
+                        content: snapshot.data[index].get<String>('description'),
                         description:
-                            snapshot.data[index].get<String>('description'),
+                            snapshot.data[index].get<String>('skills'),
                         indicatorValue: 3,
                         hostedBy: snapshot.data[index].get<String>('hostedBy'),
                         location: snapshot.data[index].get<String>('location'),
