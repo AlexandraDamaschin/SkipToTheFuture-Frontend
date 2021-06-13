@@ -96,9 +96,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     itemBuilder: (BuildContext context, int index) {
                       return makeCard(Project(
                         title: snapshot.data[index].get<String>('title'),
-                        content: snapshot.data[index].get<String>('description'),
-                        description:
-                            snapshot.data[index].get<String>('skills'),
+                        content:
+                            snapshot.data[index].get<String>('description'),
+                        description: snapshot.data[index].get<String>('skills'),
                         indicatorValue: 3,
                         hostedBy: snapshot.data[index].get<String>('hostedBy'),
                         location: snapshot.data[index].get<String>('location'),
@@ -141,21 +141,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
       ),
     );
     final topAppBar = AppBar(
-      elevation: 0.1,
-      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-      title: Text("Projects"),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.list),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UserInfoPage()),
-            );
-          },
-        )
-      ],
-    );
+        elevation: 0.1,
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        title: Text("Projects"));
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
