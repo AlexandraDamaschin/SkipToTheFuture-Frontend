@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skip_to_the_future_app/projects/project-model.dart';
+import 'package:skip_to_the_future_app/projects/project_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
