@@ -23,89 +23,110 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.white24,
           title: const Text('Volunteer with us'),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(
-                  child: const Text('Volunteer with us',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                TextField(
-                  controller: controllerUsername,
-                  enabled: !isLoggedIn,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Username'),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextField(
-                  controller: controllerPassword,
-                  enabled: !isLoggedIn,
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  textCapitalization: TextCapitalization.none,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Password'),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white24,
-                    ),
-                    child: const Text('Login'),
-                    onPressed: isLoggedIn ? null : () => doUserLogin(),
+        body: LayoutBuilder(builder: (context, constrains) {
+          return Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Center(
+                    child: const Text('Volunteer with us',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white24,
-                    ),
-                    child: const Text('Sign Up'),
-                    onPressed: () => navigateToSignUp(),
+                  SizedBox(
+                    height: (constrains.maxWidth < 700) ? 16 : 48,
                   ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white24,
+                  Container(
+                    margin: (constrains.maxWidth < 700)
+                        ? EdgeInsets.only(right: 20, left: 20)
+                        : EdgeInsets.only(right: 500, left: 500),
+                    child: TextField(
+                      controller: controllerUsername,
+                      enabled: !isLoggedIn,
+                      keyboardType: TextInputType.emailAddress,
+                      textCapitalization: TextCapitalization.none,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          labelText: 'Username'),
                     ),
-                    child: const Text('Reset Password'),
-                    onPressed: () => navigateToResetPassword(),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: (constrains.maxWidth < 700) ? 8 : 24,
+                  ),
+                  Container(
+                    margin: (constrains.maxWidth < 700)
+                        ? EdgeInsets.only(right: 20, left: 20)
+                        : EdgeInsets.only(right: 500, left: 500),
+                    child: TextField(
+                      controller: controllerPassword,
+                      enabled: !isLoggedIn,
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      textCapitalization: TextCapitalization.none,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          labelText: 'Password'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: (constrains.maxWidth < 700) ? 16 : 28,
+                  ),
+                  Container(
+                    height: 50,
+                    margin: (constrains.maxWidth < 700)
+                        ? EdgeInsets.only(right: 20, left: 20)
+                        : EdgeInsets.only(right: 500, left: 500),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white24,
+                      ),
+                      child: const Text('Login'),
+                      onPressed: isLoggedIn ? null : () => doUserLogin(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: (constrains.maxWidth < 700) ? 16 : 28,
+                  ),
+                  Container(
+                    height: 50,
+                    margin: (constrains.maxWidth < 700)
+                        ? EdgeInsets.only(right: 20, left: 20)
+                        : EdgeInsets.only(right: 500, left: 500),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white24,
+                      ),
+                      child: const Text('Sign Up'),
+                      onPressed: () => navigateToSignUp(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: (constrains.maxWidth < 700) ? 16 : 28,
+                  ),
+                  Container(
+                    height: 50,
+                    margin: (constrains.maxWidth < 700)
+                        ? EdgeInsets.only(right: 20, left: 20)
+                        : EdgeInsets.only(right: 500, left: 500),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white24,
+                      ),
+                      child: const Text('Reset Password'),
+                      onPressed: () => navigateToResetPassword(),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ));
+          );
+        }));
   }
 
   void doUserLogin() async {
