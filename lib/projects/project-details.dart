@@ -24,7 +24,7 @@ class DetailPage extends StatelessWidget {
 
     void launchURL() async => await canLaunch(_emailLaunchUri.toString())
         ? await launch(_emailLaunchUri.toString())
-        : throw 'Could not launch $_emailLaunchUri.toString()';
+        : throw 'Nu se poate accesa email-ul: $_emailLaunchUri.toString()';
 
     final topContentText = SingleChildScrollView(
         child: Column(
