@@ -104,6 +104,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         location: snapshot.data[index].get<String>('location'),
                         url: snapshot.data[index].get<String>('url'),
                         imageUrl: snapshot.data[index].get<String>('imageUrl'),
+                        contact: snapshot.data[index].get<String>('contact'),
                       ));
                     },
                   ),
