@@ -229,7 +229,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                       (constrains.maxWidth < 700) ? 50 : 150),
                               Container(
                                 margin: (constrains.maxWidth < 700)
-                                    ? EdgeInsets.only(right: 20, left: 20)
+                                    ? EdgeInsets.only(right: 5, left: 5)
                                     : EdgeInsets.only(right: 500, left: 500),
                                 child: Row(
                                     mainAxisAlignment:
@@ -248,7 +248,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                           ),
                                           child: Container(
                                               constraints: BoxConstraints(
-                                                maxWidth: 150.0,
+                                                maxWidth: 100.0,
                                                 maxHeight: 40.0,
                                               ),
                                               alignment: Alignment.center,
@@ -271,7 +271,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                           ))),
                                           child: Container(
                                               constraints: BoxConstraints(
-                                                maxWidth: 150.0,
+                                                maxWidth: 100.0,
                                                 maxHeight: 40.0,
                                               ),
                                               alignment: Alignment.center,
