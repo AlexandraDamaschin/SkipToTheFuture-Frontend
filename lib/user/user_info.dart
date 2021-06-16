@@ -86,8 +86,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                               Container(
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: NetworkImage(
-                                            "https://lh3.googleusercontent.com/proxy/6KOefHh0Jiti4k3M-jPDifWb9J74AdqmQ_4i9dg6U5qyAK4-8vugcq34W7Ib0a5gfRsKR9GiV1tJR5-dtCiJ5Yemr8i2Zzqjy-gM1yDyWXx0g2y5dTaYQOQZqDW1fOECKrbxJ7fSsYWhRpE2q8eVCFzq6cfDlaMe2nkf2M-J"),
+                                        image:
+                                            AssetImage("images/volunteer.jpeg"),
                                         fit: (constrains.maxWidth < 700)
                                             ? BoxFit.cover
                                             : BoxFit.contain)),
