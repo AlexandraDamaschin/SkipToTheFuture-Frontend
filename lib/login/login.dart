@@ -4,6 +4,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/projects/projects.dart';
 import 'package:skip_to_the_future_app/register/register.dart';
 import 'package:skip_to_the_future_app/login/reset_password.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 import '../common/message.dart';
 
 class LoginPage extends StatefulWidget {
@@ -31,7 +32,8 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Center(
-                    child: const Text('Volunteer with us',
+                    child: Text(
+                        AppLocalizations.of(context).translate('message'),
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
