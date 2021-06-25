@@ -12,7 +12,7 @@ void main() async {
   await Parse().initialize(kParseApplicationId, kParseApiUrl,
       clientKey: kParseClientKey);
 
-  runApp(MaterialApp(title: 'SignUp', home: MyApp()));
+  runApp(MaterialApp(title: 'Sign Up', home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,13 +21,11 @@ class MyApp extends StatelessWidget {
     if (currentUser == null) {
       return false;
     }
-    //Checks whether the user's session token is valid
     final ParseResponse parseResponse =
         await ParseUser.getCurrentUserFromServer(
             currentUser.get<String>('sessionToken'));
 
     if (!parseResponse.success) {
-      //Invalid session. Logout
       await currentUser.logout();
       return false;
     } else {
@@ -41,7 +39,6 @@ class MyApp extends StatelessWidget {
       title: 'Volunteer with us!',
       supportedLocales: [
         Locale('en', 'US'),
-        Locale('ar', ''),
         Locale('ro', ''),
       ],
       localizationsDelegates: [

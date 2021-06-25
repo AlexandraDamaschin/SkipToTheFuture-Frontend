@@ -22,112 +22,116 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white24,
-          title: const Text('Volunteer with us'),
+          title:
+              Text(AppLocalizations.of(context).translate('volunteer_with_us')),
         ),
         body: LayoutBuilder(builder: (context, constrains) {
           return Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Center(
-                    child: Text(
-                        AppLocalizations.of(context).translate('message'),
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 48,
-                  ),
-                  Container(
-                    margin: (constrains.maxWidth < 700)
-                        ? EdgeInsets.only(right: 20, left: 20)
-                        : EdgeInsets.only(right: 500, left: 500),
-                    child: TextField(
-                      controller: controllerUsername,
-                      enabled: !isLoggedIn,
-                      keyboardType: TextInputType.emailAddress,
-                      textCapitalization: TextCapitalization.none,
-                      autocorrect: false,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'Username'),
-                    ),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 8 : 24,
-                  ),
-                  Container(
-                    margin: (constrains.maxWidth < 700)
-                        ? EdgeInsets.only(right: 20, left: 20)
-                        : EdgeInsets.only(right: 500, left: 500),
-                    child: TextField(
-                      controller: controllerPassword,
-                      enabled: !isLoggedIn,
-                      obscureText: true,
-                      keyboardType: TextInputType.text,
-                      textCapitalization: TextCapitalization.none,
-                      autocorrect: false,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'Password'),
-                    ),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 28,
-                  ),
-                  Container(
-                    height: 50,
-                    margin: (constrains.maxWidth < 700)
-                        ? EdgeInsets.only(right: 20, left: 20)
-                        : EdgeInsets.only(right: 500, left: 500),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white24,
+              child: SingleChildScrollView(
+                  padding: EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Center(
+                        child: Text(
+                            AppLocalizations.of(context)
+                                .translate('volunteer_with_us'),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                       ),
-                      child: const Text('Login'),
-                      onPressed: isLoggedIn ? null : () => doUserLogin(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 28,
-                  ),
-                  Container(
-                    height: 50,
-                    margin: (constrains.maxWidth < 700)
-                        ? EdgeInsets.only(right: 20, left: 20)
-                        : EdgeInsets.only(right: 500, left: 500),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white24,
+                      SizedBox(
+                        height: (constrains.maxWidth < 700) ? 16 : 48,
                       ),
-                      child: const Text('Sign Up'),
-                      onPressed: () => navigateToSignUp(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 28,
-                  ),
-                  Container(
-                    height: 50,
-                    margin: (constrains.maxWidth < 700)
-                        ? EdgeInsets.only(right: 20, left: 20)
-                        : EdgeInsets.only(right: 500, left: 500),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white24,
+                      Container(
+                        margin: (constrains.maxWidth < 700)
+                            ? EdgeInsets.only(right: 20, left: 20)
+                            : EdgeInsets.only(right: 500, left: 500),
+                        child: TextField(
+                          controller: controllerUsername,
+                          enabled: !isLoggedIn,
+                          keyboardType: TextInputType.emailAddress,
+                          textCapitalization: TextCapitalization.none,
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              labelText: AppLocalizations.of(context)
+                                  .translate('username')),
+                        ),
                       ),
-                      child: const Text('Reset Password'),
-                      onPressed: () => navigateToResetPassword(),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
+                      SizedBox(
+                        height: (constrains.maxWidth < 700) ? 8 : 24,
+                      ),
+                      Container(
+                        margin: (constrains.maxWidth < 700)
+                            ? EdgeInsets.only(right: 20, left: 20)
+                            : EdgeInsets.only(right: 500, left: 500),
+                        child: TextField(
+                          controller: controllerPassword,
+                          enabled: !isLoggedIn,
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          textCapitalization: TextCapitalization.none,
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              labelText: AppLocalizations.of(context)
+                                  .translate('password')),
+                        ),
+                      ),
+                      SizedBox(
+                        height: (constrains.maxWidth < 700) ? 16 : 28,
+                      ),
+                      Container(
+                        height: 50,
+                        margin: (constrains.maxWidth < 700)
+                            ? EdgeInsets.only(right: 20, left: 20)
+                            : EdgeInsets.only(right: 500, left: 500),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white24,
+                          ),
+                          child: Text(
+                              AppLocalizations.of(context).translate('login')),
+                          onPressed: isLoggedIn ? null : () => doUserLogin(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: (constrains.maxWidth < 700) ? 16 : 28,
+                      ),
+                      Container(
+                        height: 50,
+                        margin: (constrains.maxWidth < 700)
+                            ? EdgeInsets.only(right: 20, left: 20)
+                            : EdgeInsets.only(right: 500, left: 500),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white24,
+                          ),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('sign_up')),
+                          onPressed: () => navigateToSignUp(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: (constrains.maxWidth < 700) ? 16 : 28,
+                      ),
+                      Container(
+                          height: 50,
+                          margin: (constrains.maxWidth < 700)
+                              ? EdgeInsets.only(right: 20, left: 20)
+                              : EdgeInsets.only(right: 500, left: 500),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white24,
+                            ),
+                            child: Text(AppLocalizations.of(context)
+                                .translate('reset_password')),
+                            onPressed: () => navigateToResetPassword(),
+                          ))
+                    ],
+                  )));
         }));
   }
 

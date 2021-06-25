@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/projects/project_details.dart';
 import 'package:skip_to_the_future_app/projects/project_model.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 import 'package:skip_to_the_future_app/user/user_info.dart';
 
 class ProjectsPage extends StatefulWidget {
@@ -85,7 +86,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             default:
               if (snapshot.hasError) {
                 return Center(
-                  child: Text("Error..."),
+                  child: Text(AppLocalizations.of(context).translate('error')),
                 );
               } else {
                 return Container(
@@ -144,7 +145,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
     final topAppBar = AppBar(
         elevation: 0.1,
         backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-        title: Text("Projects"));
+        title: Text(AppLocalizations.of(context).translate('projects')));
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),

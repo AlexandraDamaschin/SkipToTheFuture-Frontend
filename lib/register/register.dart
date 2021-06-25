@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 import '../common/message.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white24,
-          title: const Text('Sign Up'),
+          title: Text(AppLocalizations.of(context).translate('sign_up')),
         ),
         body: LayoutBuilder(builder: (context, constrains) {
           return Center(
@@ -27,13 +28,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Center(
-                    child: const Text('Volunteer with us',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(height: (constrains.maxWidth < 700) ? 16 : 48),
-                  Center(
-                    child: const Text('User registration',
+                    child: Text(
+                        AppLocalizations.of(context)
+                            .translate('user_registration'),
                         style: TextStyle(fontSize: 16)),
                   ),
                   SizedBox(height: (constrains.maxWidth < 700) ? 16 : 48),
@@ -49,7 +46,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'Username'),
+                          labelText: AppLocalizations.of(context)
+                              .translate('username')),
                     ),
                   ),
                   SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
@@ -65,7 +63,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'E-mail'),
+                          labelText:
+                              AppLocalizations.of(context).translate('email')),
                     ),
                   ),
                   SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
@@ -82,7 +81,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'Password'),
+                          labelText: AppLocalizations.of(context)
+                              .translate('password')),
                     ),
                   ),
                   SizedBox(height: (constrains.maxWidth < 700) ? 8 : 24),
@@ -95,7 +95,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white24,
                       ),
-                      child: const Text('Sign Up'),
+                      child: Text(
+                        AppLocalizations.of(context).translate('register'),
+                      ),
                       onPressed: () => doUserRegistration(),
                     ),
                   )
@@ -120,7 +122,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
       Message.showSuccess(
           context: context,
-          message: 'User was successfully created!',
+          message:
+              AppLocalizations.of(context).translate('success_registration'),
           onPressed: () async {
             Navigator.pop(context);
           });
