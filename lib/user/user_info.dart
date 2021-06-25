@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/common/message.dart';
 import 'package:skip_to_the_future_app/login/login.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 
 class UserInfoPage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       if (response.success) {
         Message.showSuccess(
             context: context,
-            message: 'User was successfully logout!',
+            message: AppLocalizations.of(context).translate('success_logout'),
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -45,7 +46,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text("Profile"),
+          title: Text(AppLocalizations.of(context).translate('profile')),
           elevation: 0.1,
           backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
           centerTitle: true,
@@ -67,12 +68,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   default:
                     if (snapshot.hasError) {
                       return Center(
-                        child: Text("Error...: ${snapshot.error.toString()}"),
+                        child: Text(
+                            "${AppLocalizations.of(context).translate('error')} ${snapshot.error.toString()}"),
                       );
                     } else {
                       if (snapshot.data.isEmpty) {
                         return Center(
-                          child: Text('No user found'),
+                          child: Text(AppLocalizations.of(context)
+                              .translate('user_not_found')),
                         );
                       }
 
@@ -142,7 +145,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                       padding: EdgeInsets.symmetric(
                                           vertical: 12, horizontal: 30),
                                       child: Text(
-                                        "Skill Sets",
+                                        AppLocalizations.of(context)
+                                            .translate('skill_set'),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -177,7 +181,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  "Projects",
+                                                  AppLocalizations.of(context)
+                                                      .translate('projects'),
                                                   style: TextStyle(
                                                       color: Colors.blueAccent,
                                                       fontSize: 22.0,
@@ -202,7 +207,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                               child: Column(
                                             children: [
                                               Text(
-                                                "Jobs",
+                                                AppLocalizations.of(context)
+                                                    .translate('jobs'),
                                                 style: TextStyle(
                                                     color: Colors.blueAccent,
                                                     fontSize: 22.0,
@@ -253,7 +259,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                               ),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "Contact me",
+                                                AppLocalizations.of(context)
+                                                    .translate('contact'),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16.0,
@@ -276,7 +283,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                               ),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                "Portfolio",
+                                                AppLocalizations.of(context)
+                                                    .translate('portfolio'),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16.0,
@@ -308,7 +316,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                             ),
                                             alignment: Alignment.center,
                                             child: Text(
-                                              "Logout",
+                                              AppLocalizations.of(context)
+                                                  .translate('logout'),
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 16.0,

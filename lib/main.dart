@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:skip_to_the_future_app/login/login.dart';
 import 'common/constants.dart';
 import 'projects/projects.dart';
+import 'translations/localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +12,7 @@ void main() async {
   await Parse().initialize(kParseApplicationId, kParseApiUrl,
       clientKey: kParseClientKey);
 
-  runApp(MaterialApp(title: 'SignUp', home: MyApp()));
+  runApp(MaterialApp(title: 'Sign Up', home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,13 +21,11 @@ class MyApp extends StatelessWidget {
     if (currentUser == null) {
       return false;
     }
-    //Checks whether the user's session token is valid
     final ParseResponse parseResponse =
         await ParseUser.getCurrentUserFromServer(
             currentUser.get<String>('sessionToken'));
 
     if (!parseResponse.success) {
-      //Invalid session. Logout
       await currentUser.logout();
       return false;
     } else {
@@ -36,7 +36,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Volunteer with us',
+      title: 'Volunteer with us!',
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('ro', ''),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       home: FutureBuilder<bool>(
           future: hasUserLogged(),
           builder: (context, snapshot) {

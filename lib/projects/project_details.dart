@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skip_to_the_future_app/projects/project_model.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
@@ -20,11 +21,11 @@ class DetailPage extends StatelessWidget {
         scheme: 'mailto',
         path: '${project.contact}',
         query:
-            'subject=Vreau sa particip in cadrul programului ${project.title}');
+            'subject=${AppLocalizations.of(context).translate('want_to_participate_in_project')} ${project.title}');
 
     void launchURL() async => await canLaunch(_emailLaunchUri.toString())
         ? await launch(_emailLaunchUri.toString())
-        : throw 'Nu se poate accesa email-ul: $_emailLaunchUri.toString()';
+        : throw '${AppLocalizations.of(context).translate('unable_to_access_email')}: $_emailLaunchUri.toString()';
 
     final topContentText = LayoutBuilder(builder: (context, constrains) {
       return SingleChildScrollView(
@@ -121,7 +122,8 @@ class DetailPage extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               primary: Color.fromRGBO(58, 66, 86, 1.0),
             ),
-            child: Text("Participa la acest proiect",
+            child: Text(
+                AppLocalizations.of(context).translate('attent_project'),
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: (constrains.maxWidth < 700) ? 16 : 24)),

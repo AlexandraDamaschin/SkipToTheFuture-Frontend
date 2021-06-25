@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:skip_to_the_future_app/translations/localizations.dart';
 
 import '../common/message.dart';
 
@@ -17,7 +18,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white24,
-          title: Text('Reset Password'),
+          title: Text(AppLocalizations.of(context).translate('reset_password')),
         ),
         body: LayoutBuilder(builder: (context, constrains) {
           return Center(
@@ -26,14 +27,15 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                  Center(
-                    child: const Text('Reset password',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(
-                    height: (constrains.maxWidth < 700) ? 16 : 48,
-                  ),
+                Center(
+                  child: Text(
+                      AppLocalizations.of(context).translate('reset_password'),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(
+                  height: (constrains.maxWidth < 700) ? 16 : 48,
+                ),
                 Container(
                   margin: (constrains.maxWidth < 700)
                       ? EdgeInsets.only(right: 20, left: 20)
@@ -46,7 +48,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
-                        labelText: 'E-mail'),
+                        labelText:
+                            AppLocalizations.of(context).translate('email')),
                   ),
                 ),
                 SizedBox(
@@ -61,7 +64,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white24,
                     ),
-                    child: const Text('Reset Password'),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('reset_password')),
                     onPressed: () => doUserResetPassword(),
                   ),
                 )
@@ -77,7 +81,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     if (parseResponse.success) {
       Message.showSuccess(
           context: context,
-          message: 'Password reset instructions have been sent to email!',
+          message: AppLocalizations.of(context)
+              .translate('password_reset_instructions'),
           onPressed: () {
             Navigator.of(context).pop();
           });
