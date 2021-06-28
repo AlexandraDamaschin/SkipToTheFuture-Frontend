@@ -12,10 +12,10 @@ void main() async {
   await Parse().initialize(kParseApplicationId, kParseApiUrl,
       clientKey: kParseClientKey);
 
-  runApp(MaterialApp(title: 'Sign Up', home: MyApp()));
+  runApp(MaterialApp(title: 'Sign Up', home: MainApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
   Future<bool> hasUserLogged() async {
     ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
     if (currentUser == null) {
