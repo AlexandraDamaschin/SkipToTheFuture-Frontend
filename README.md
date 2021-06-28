@@ -17,7 +17,7 @@ In order to run this project, please make sure you have installed Flutter:
 After installation, the project can be run from the command line using: 
 - flutter pub get (This will get all the libraries needed for the project)
 - flutter run (Will run the application on a selected mobile device or in a Browser)
-- 
+
 This code is released under the terms of the following license:
 
 The MIT License
